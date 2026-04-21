@@ -1,0 +1,74 @@
+<ion-content [fullscreen]="true" class="ion-padding education-content">
+  <div class="header-section">
+    <h1>Edukasi & Info</h1>
+    <p>Pahami tubuhmu dan jaga kesehatan reproduksimu.</p>
+  </div>
+
+  <ion-segment mode="ios" (ionChange)="segmentChanged($event)" [value]="selectedSegment" class="custom-segment glass-card">
+    <ion-segment-button value="siklus">
+      <ion-label>Siklus Haid</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="reproduksi">
+      <ion-label>Reproduksi</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="tips">
+      <ion-label>Tips Khusus</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Bagian Siklus Haid -->
+  <div *ngIf="selectedSegment === 'siklus'" class="tab-content fade-in">
+    <h2 class="section-title">Fase Siklus Menstruasi</h2>
+    
+    <div *ngFor="let phase of cyclePhases" class="phase-card glass-card" [style.border-left]="'4px solid ' + phase.color">
+      <div class="phase-header">
+        <div class="icon-circle" [style.background]="phase.color + '20'">
+          <ion-icon [name]="phase.icon" [style.color]="phase.color"></ion-icon>
+        </div>
+        <div>
+          <h3>{{ phase.name }}</h3>
+          <span class="days-badge">{{ phase.days }}</span>
+        </div>
+      </div>
+      <p class="phase-desc">{{ phase.description }}</p>
+      <div class="phase-tips">
+        <strong><ion-icon name="bulb-outline"></ion-icon> Tips:</strong> {{ phase.tips }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Bagian Edukasi Reproduksi -->
+  <div *ngIf="selectedSegment === 'reproduksi'" class="tab-content fade-in">
+    <h2 class="section-title">Artikel Kesehatan</h2>
+    
+    <div *ngFor="let article of reproductiveHealthArticles" class="article-card glass-card ion-activatable" (click)="openArticle(article)" style="position: relative; overflow: hidden; cursor: pointer;">
+      <ion-ripple-effect></ion-ripple-effect>
+      <div class="article-image" [style.background-image]="'url(' + article.image + ')'"></div>
+      <div class="article-content">
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.summary }}</p>
+        <div class="article-meta">
+          <ion-icon name="time-outline"></ion-icon> {{ article.readTime }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bagian Tips Khusus -->
+  <div *ngIf="selectedSegment === 'tips'" class="tab-content fade-in">
+    <h2 class="section-title">Tips & Trik</h2>
+    
+    <div *ngFor="let tip of specialTips" class="tip-card glass-card ion-activatable" (click)="openTip(tip)" style="position: relative; overflow: hidden; cursor: pointer;">
+      <ion-ripple-effect></ion-ripple-effect>
+      <div class="tip-icon">
+        <ion-icon [name]="tip.icon"></ion-icon>
+      </div>
+      <div class="tip-content">
+        <h3>{{ tip.title }}</h3>
+        <p>{{ tip.content }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="spacer"></div>
+</ion-content>

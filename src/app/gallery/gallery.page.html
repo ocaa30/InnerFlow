@@ -1,0 +1,28 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="transparent">
+    <ion-title class="title-main">Insight & Laporan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding" style="--background: var(--bg-gradient, linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%));">
+  <div class="header-section">
+    <h2 class="title-main" style="margin-top: 1rem; font-size: 1.5rem;">Ringkasan Siklus</h2>
+    <p style="color: #666; margin-bottom: 24px;">Berikut pola kesehatan kalendermu selama 6 bulan terakhir.</p>
+  </div>
+
+  <div class="glass-card stat-card fade-in">
+    <h3 class="subtitle-main" style="margin-top: 0;">Fluktuasi Panjang Siklus</h3>
+    <div class="canvas-container">
+      <canvas #lineCanvas></canvas>
+    </div>
+  </div>
+
+  <div class="glass-card stat-card fade-in" style="margin-top: 24px; animation-delay: 0.2s;">
+    <h3 class="subtitle-main" style="margin-top: 0;">Intensitas Haid (Total Hari)</h3>
+    <div class="canvas-container">
+      <canvas #doughnutCanvas></canvas>
+    </div>
+  </div>
+  
+  <div class="spacer" style="height: 60px;"></div>
+</ion-content>

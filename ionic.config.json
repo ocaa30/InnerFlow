@@ -1,0 +1,7 @@
+{
+  "name": "FemFlow",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

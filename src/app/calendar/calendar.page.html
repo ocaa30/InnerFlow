@@ -1,0 +1,71 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="transparent">
+    <ion-title class="title-main">Kalender</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <div class="glass-card calendar-wrapper">
+    <ion-datetime 
+      presentation="date" 
+      size="cover"
+      [highlightedDates]="highlightedDates"
+      (ionChange)="onDateChange($event)">
+    </ion-datetime>
+  </div>
+
+  <div class="legend-container">
+    <h3 class="subtitle-main">Keterangan:</h3>
+    <div class="legend-item">
+      <div class="legend-color" style="background: var(--ion-color-danger);"></div>
+      <span>Perkiraan Haid</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background: var(--ion-color-success);"></div>
+      <span>Masa Subur</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-color" style="background: var(--ion-color-primary);"></div>
+      <span>Ada Catatan Gejala</span>
+    </div>
+  </div>
+
+  <div class="glass-card stat-card" *ngIf="settings && predictions">
+    <h3 class="subtitle-main" style="margin-top: 0; margin-bottom: 16px;">Statistik Siklus</h3>
+    
+    <div class="stat-grid">
+      <div class="stat-box">
+        <ion-icon name="sync-outline" color="primary"></ion-icon>
+        <span class="stat-label">Siklus</span>
+        <span class="stat-value">{{ settings.cycleLength }} Hari</span>
+      </div>
+      <div class="stat-box">
+        <ion-icon name="water-outline" color="danger"></ion-icon>
+        <span class="stat-label">Haid</span>
+        <span class="stat-value">{{ settings.periodLength }} Hari</span>
+      </div>
+    </div>
+    
+    <div class="stat-row">
+      <ion-icon name="calendar-outline" color="secondary"></ion-icon>
+      <div class="stat-text">
+        <span class="stat-label">Haid Berikutnya</span>
+        <span class="stat-value">{{ predictions.nextPeriod | date:'dd MMM yyyy' }}</span>
+      </div>
+    </div>
+    <div class="stat-row">
+      <ion-icon name="heart-outline" color="success"></ion-icon>
+      <div class="stat-text">
+        <span class="stat-label">Masa Subur</span>
+        <span class="stat-value">{{ predictions.fertilityStart | date:'dd MMM' }} - {{ predictions.fertilityEnd | date:'dd MMM yyyy' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ini tombol sementara untuk testing -->
+  <ion-button expand="block" class="action-btn" style="margin-top: 30px;" (click)="openLogModal(selectedDate)">
+    Lihat Catatan: {{ selectedDate | date:'mediumDate' }}
+  </ion-button>
+
+</ion-content>

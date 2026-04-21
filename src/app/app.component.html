@@ -1,0 +1,39 @@
+<ion-app>
+  <!-- Router Outlet will take up available height minus the tab bar -->
+  <div class="app-content-wrapper">
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+  
+  <!-- Custom Floating Tab Bar untuk Aesthetic Premium -->
+  <div class="custom-tab-bar-container">
+    <div class="glass-card custom-tab-bar">
+      <ion-button fill="clear" color="dark" routerLink="/home" routerDirection="root">
+        <div class="tab-btn-content">
+          <ion-icon name="heart"></ion-icon>
+          <span>Hari Ini</span>
+        </div>
+      </ion-button>
+
+      <ion-button fill="clear" color="dark" routerLink="/calendar" routerDirection="root">
+        <div class="tab-btn-content">
+          <ion-icon name="calendar"></ion-icon>
+          <span>Kalender</span>
+        </div>
+      </ion-button>
+
+      <ion-button fill="clear" color="dark" routerLink="/gallery" routerDirection="root">
+        <div class="tab-btn-content">
+          <ion-icon name="pie-chart"></ion-icon>
+          <span>Insight</span>
+        </div>
+      </ion-button>
+
+      <ion-button fill="clear" color="dark" routerLink="/education" routerDirection="root">
+        <div class="tab-btn-content">
+          <ion-icon name="book"></ion-icon>
+          <span>Edukasi</span>
+        </div>
+      </ion-button>
+    </div>
+  </div>
+</ion-app>

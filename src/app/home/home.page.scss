@@ -1,0 +1,157 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  min-height: 100%;
+  padding-top: 40px;
+}
+
+.greeting {
+  text-align: center;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* --- Progress Ring --- */
+.ring-container {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  animation: fadeInUp 0.8s ease-out forwards, breathingPulse 4s ease-in-out infinite 0.8s;
+}
+
+.progress-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* Start from top */
+}
+
+.ring-bg {
+  fill: none;
+  stroke: rgba(255, 179, 198, 0.2);
+  stroke-width: 14;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: var(--ion-color-primary);
+  stroke-width: 14;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease-in-out;
+  /* Circumference is approx 753.9 */
+  stroke-dasharray: 754; 
+}
+
+/* Status Inside Ring */
+.ring-content {
+  text-align: center;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  .status-number {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--ion-color-primary-shade);
+    line-height: 1;
+    margin: 0;
+  }
+
+  .status-label {
+    font-size: 1.1rem;
+    color: var(--ion-color-medium);
+    margin-top: 8px;
+    font-weight: 500;
+  }
+}
+
+.fertile-state .ring-fill {
+  stroke: var(--ion-color-success);
+}
+.late-state .ring-fill {
+  stroke: var(--ion-color-danger);
+}
+
+/* --- Info Cards --- */
+.info-cards {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.info-card {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    color: var(--ion-color-primary);
+    margin-bottom: 8px;
+  }
+  
+  h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--ion-color-medium);
+  }
+  
+  p {
+    margin: 4px 0 0 0;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    font-size: 1.1rem;
+  }
+}
+
+/* --- Action Button --- */
+.action-btn {
+  --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-primary-tint));
+  --border-radius: 100px;
+  --box-shadow: 0 8px 24px rgba(255, 143, 171, 0.4);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: auto;
+  margin-bottom: 20px;
+  width: 90%;
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out forwards;
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/* --- Micro Animations Keyframes --- */
+@keyframes breathingPulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(255, 143, 171, 0.2)); }
+  50% { transform: scale(1.03); filter: drop-shadow(0 0 15px rgba(255, 143, 171, 0.6)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 0px rgba(255, 143, 171, 0.2)); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

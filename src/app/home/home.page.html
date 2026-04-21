@@ -1,0 +1,66 @@
+<ion-content [fullscreen]="true">
+  <div class="dashboard-container">
+    
+    <div class="greeting" style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <div>
+        <h1 class="title-main">Halo, Cantik!</h1>
+        <p class="subtitle-main">Berikut ringkasan siklusmu hari ini</p>
+      </div>
+      <ion-button (click)="openProfilModal()" fill="clear" color="dark" style="margin-top: -8px; margin-right: -8px;">
+        <ion-icon name="options-outline" slot="icon-only" style="font-size: 26px;"></ion-icon>
+      </ion-button>
+    </div>
+
+    <!-- Cincin Siklus -->
+    <div class="ring-container" [ngClass]="{'fertile-state': isFertile, 'late-state': isLate}">
+      <!-- SVG Lingkaran Progres -->
+      <svg class="progress-svg" viewBox="0 0 260 260">
+        <circle class="ring-bg" cx="130" cy="130" r="120"></circle>
+        <circle class="ring-fill" cx="130" cy="130" r="120"
+                [style.strokeDashoffset]="strokeDashoffset">
+        </circle>
+      </svg>
+      
+      <!-- Teks Dalam Cincin -->
+      <div class="ring-content">
+        <ng-container *ngIf="isLate; else normalState">
+          <p class="status-number">{{ daysUntilPeriod * -1 }}</p>
+          <p class="status-label" style="color: var(--ion-color-danger)">Hari<br>Terlambat</p>
+        </ng-container>
+
+        <ng-template #normalState>
+          <p class="status-number">{{ cycleDay }}</p>
+          <p class="status-label">Hari<br>Siklus</p>
+          <p style="color: var(--ion-color-primary-shade); font-weight: 600; font-size: 0.9rem; margin-top: 10px;">
+            {{ daysUntilPeriod }} hari menuju haid
+          </p>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Kartu Informasi (Glassmorphism) -->
+    <div class="info-cards">
+      <div class="glass-card info-card">
+        <ion-icon name="water-outline" class="card-icon"></ion-icon>
+        <h3>Haid Berikutnya</h3>
+        <p>{{ predictions?.nextPeriod | date:'mediumDate' }}</p>
+      </div>
+      
+      <div class="glass-card info-card" [style.background]="isFertile ? 'rgba(45,211,111,0.2)' : ''">
+        <ion-icon name="flower-outline" class="card-icon" 
+                  [style.color]="isFertile ? 'var(--ion-color-success)' : 'var(--ion-color-primary)'"></ion-icon>
+        <h3>Masa Subur</h3>
+        <p *ngIf="isFertile" style="color: var(--ion-color-success)">Sekarang!</p>
+        <p *ngIf="!isFertile">{{ predictions?.fertilityStart | date:'mediumDate' }}</p>
+      </div>
+    </div>
+
+    <!-- Tombol Log Simtom -->
+    <!-- Nanti ini bisa di routing ke halaman Log atau Modal Log -->
+    <ion-button class="action-btn" expand="block" shape="round" (click)="openLogModal()">
+      <ion-icon name="add-circle" slot="start"></ion-icon>
+      Catat Gejala Hari Ini
+    </ion-button>
+
+  </div>
+</ion-content>
