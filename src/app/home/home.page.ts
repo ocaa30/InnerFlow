@@ -6,6 +6,13 @@ import { CycleService, UserSettings } from '../services/cycle.service';
 import { LogModalComponent } from '../log-modal.component';
 import { ProfilModalComponent } from '../profil-modal.component';
 
+interface Predictions {
+  nextPeriod: string;
+  ovulation: string;
+  fertilityStart: string;
+  fertilityEnd: string;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -18,7 +25,7 @@ export class HomePage implements OnInit {
   private modalCtrl = inject(ModalController);
 
   settings!: UserSettings;
-  predictions: any;
+  predictions!: Predictions;
   daysUntilPeriod: number = 0;
   cycleDay: number = 1;
   isFertile: boolean = false;

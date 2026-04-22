@@ -2,6 +2,15 @@ import { Component, Input, inject } from '@angular/core';
 import { ModalController, IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
+interface ModalData {
+  title: string;
+  summary?: string;
+  fullContent?: string;
+  content?: string;
+  readTime?: string;
+  image?: string;
+}
+
 @Component({
   selector: 'app-article-modal',
   template: `
@@ -109,9 +118,9 @@ import { CommonModule } from '@angular/common';
 })
 export class ArticleModalComponent {
   private modalCtrl = inject(ModalController);
-  @Input() data: any;
+  @Input() data!: ModalData;
 
-  formatContent(text: string): string {
+  formatContent(text: string | undefined): string {
     if (!text) return '';
     // Konversi newline (\n) menjadi tag paragraf untuk data sederhana
     const paragraphs = text.split('\n\n').filter(p => p.trim() !== '');

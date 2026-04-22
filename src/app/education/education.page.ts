@@ -1,6 +1,29 @@
 import { Component, inject } from '@angular/core';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { ArticleModalComponent } from '../article-modal.component';
+
+interface CyclePhase {
+  name: string;
+  days: string;
+  description: string;
+  tips: string;
+  icon: string;
+  color: string;
+}
+
+interface Article {
+  title: string;
+  summary: string;
+  fullContent: string;
+  image: string;
+  readTime: string;
+}
+
+interface SpecialTip {
+  title: string;
+  content: string;
+  icon: string;
+}
 
 @Component({
   selector: 'app-education',
@@ -9,13 +32,12 @@ import { ArticleModalComponent } from '../article-modal.component';
   standalone: false
 })
 export class EducationPage {
-  private toastCtrl = inject(ToastController);
   private modalCtrl = inject(ModalController);
 
   selectedSegment: string = 'siklus';
 
   // Menstrual cycle phases
-  cyclePhases = [
+  cyclePhases: CyclePhase[] = [
     {
       name: 'Fase Menstruasi',
       days: 'Hari 1-5',
@@ -50,7 +72,7 @@ export class EducationPage {
     }
   ];
 
-  reproductiveHealthArticles = [
+  reproductiveHealthArticles: Article[] = [
     {
       title: 'Menjaga Kebersihan Area Kewanitaan',
       summary: 'Cara yang benar dalam merawat dan membersihkan area kewanitaan untuk mencegah infeksi.',
@@ -74,7 +96,7 @@ export class EducationPage {
     }
   ];
 
-  specialTips = [
+  specialTips: SpecialTip[] = [
     {
       title: 'Pereda Kram Alami',
       content: 'Minum seduhan jahe hangat atau teh chamomile dapat membantu menenangkan otot rahim dan meredakan kram saat menstruasi.',
@@ -93,11 +115,11 @@ export class EducationPage {
   ];
 
 
-  segmentChanged(event: any) {
+  segmentChanged(event: { detail: { value: string } }) {
     this.selectedSegment = event.detail.value;
   }
 
-  async openArticle(article: any) {
+  async openArticle(article: Article) {
     const modal = await this.modalCtrl.create({
       component: ArticleModalComponent,
       componentProps: { data: article }
@@ -105,7 +127,7 @@ export class EducationPage {
     return await modal.present();
   }
 
-  async openTip(tip: any) {
+  async openTip(tip: SpecialTip) {
     const modal = await this.modalCtrl.create({
       component: ArticleModalComponent,
       componentProps: { data: tip }

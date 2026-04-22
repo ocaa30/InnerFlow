@@ -15,8 +15,8 @@ export class GalleryPage implements AfterViewInit {
   @ViewChild('lineCanvas') private lineCanvas!: ElementRef;
   @ViewChild('doughnutCanvas') private doughnutCanvas!: ElementRef;
 
-  lineChart: any;
-  doughnutChart: any;
+  lineChart: Chart | null = null;
+  doughnutChart: Chart | null = null;
 
   constructor() {}
 
@@ -82,4 +82,4 @@ export class GalleryPage implements AfterViewInit {
       }
     });
   }
-}
+}

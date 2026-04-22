@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content [fullscreen]="true" class="ion-padding" style="--padding-bottom: 100px;">
   
   <div class="glass-card calendar-wrapper">
     <ion-datetime 
@@ -64,7 +64,7 @@
   </div>
 
   <!-- Ini tombol sementara untuk testing -->
-  <ion-button expand="block" class="action-btn" style="margin-top: 30px;" (click)="openLogModal(selectedDate)">
+  <ion-button expand="block" class="action-btn" style="margin-top: 30px; margin-bottom: 80px;" (click)="openLogModal(selectedDate)">
     Lihat Catatan: {{ selectedDate | date:'mediumDate' }}
   </ion-button>
 

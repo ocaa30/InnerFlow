@@ -1,11 +1,24 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { CycleService } from '../services/cycle.service';
+import { CycleService, UserSettings } from '../services/cycle.service';
 import { ModalController } from '@ionic/angular';
 import { LogModalComponent } from '../log-modal.component';
 
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+interface HighlightedDate {
+  date: string;
+  textColor: string;
+  backgroundColor: string;
+}
+
+interface Predictions {
+  nextPeriod: string;
+  ovulation: string;
+  fertilityStart: string;
+  fertilityEnd: string;
+}
 
 @Component({
   selector: 'app-calendar',
@@ -18,10 +31,10 @@ export class CalendarPage implements OnInit {
   private cycleService = inject(CycleService);
   private modalCtrl = inject(ModalController);
 
-  highlightedDates: any[] = [];
+  highlightedDates: HighlightedDate[] = [];
   selectedDate: string = new Date().toISOString();
-  predictions: any;
-  settings: any;
+  predictions!: Predictions;
+  settings!: UserSettings;
 
   ngOnInit() {
     this.loadCalendarData();
@@ -87,8 +100,9 @@ export class CalendarPage implements OnInit {
       componentProps: {
         date: normDate
       },
-      breakpoints: [0, 0.5, 0.85],
-      initialBreakpoint: 0.85
+      breakpoints: [0, 0.5, 0.95],
+      initialBreakpoint: 0.95,
+      presentingElement: await this.modalCtrl.getTop() // Menghindari z-index issues
     });
     
     modal.onDidDismiss().then(() => {
@@ -99,7 +113,7 @@ export class CalendarPage implements OnInit {
     await modal.present();
   }
 
-  onDateChange(event: any) {
+  onDateChange(event: { detail: { value: string } }) {
     this.selectedDate = event.detail.value;
   }
 }
