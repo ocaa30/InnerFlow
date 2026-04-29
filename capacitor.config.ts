@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.InnerFlow.app',
+  appId: 'com.rosalia.InnerFlow',
   appName: 'InnerFlow',
   webDir: 'www'
 };

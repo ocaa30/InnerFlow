@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace = "com.InnerFlow.app"
+    namespace = "com.rosalia.InnerFlow"
     compileSdk = rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.InnerFlow.app"
+        applicationId "com.rosalia.InnerFlow"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
