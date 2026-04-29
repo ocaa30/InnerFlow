@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.femflow.app',
-  appName: 'FemFlow',
+  appId: 'com.InnerFlow.app',
+  appName: 'InnerFlow',
   webDir: 'www'
 };
 
