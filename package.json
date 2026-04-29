@@ -1,7 +1,7 @@
 {
-  "name": "femflow",
+  "name": "InnerFlow",
   "version": "1.0.0",
-  "author": "FemFlow Studio",
+  "author": "InnerFlow Studio",
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
