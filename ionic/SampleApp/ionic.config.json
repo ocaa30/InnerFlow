@@ -1,0 +1,7 @@
+{
+  "name": "InnerFlow",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
